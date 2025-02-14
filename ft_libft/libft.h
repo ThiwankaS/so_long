@@ -16,8 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <ft_printf.h>
-# include <get_next_line.h>
 
 int		ft_atoi(const char *str);
 int		ft_isalpha(long int param);
