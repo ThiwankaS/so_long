@@ -12,15 +12,16 @@ RM = rm -rf
 # Directories
 SRC_DIR = srcs
 PRINTF_DIR = ft_printf
+GNL_DIR = ft_gnl
 
 # Source files
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(PRINTF_DIR)/*.c)
+SRC_FILES = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(PRINTF_DIR)/*.c) $(wildcard $(GNL_DIR)/*.c)
 
 # Object files
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Headers
-HEADER = libft.h ft_printf.h
+HEADER = libft.h ft_printf.h get_next_line.h
 
 # Targets
 all: $(NAME)
