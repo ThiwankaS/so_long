@@ -48,7 +48,10 @@ Start -> Load Map -> Render Window -> Player Input
 ```
 
 ## TODO List
-- [x] Implement player movement
+- [ ] Argument validation
+    - [ ] ./so_long <map_name> valid game starting with argument
+    - [ ] if argc > 2 -> too much arguments
+    - [ ] if argc < 2 -> some arguments missing
 - [ ] Add collision detection
 - [ ] Implement collectible items
 - [ ] Optimize rendering
