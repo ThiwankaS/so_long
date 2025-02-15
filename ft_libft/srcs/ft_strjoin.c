@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	int		count;
 	int		step;
@@ -23,12 +23,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str == NULL)
 		return (NULL);
-	while (s1[count] != '\0')
+	while (s1 && s1[count])
 	{
 		str[count] = s1[count];
 		count++;
 	}
-	while (s2[step] != '\0')
+	while (s2 && s2[step])
 	{
 		str[count + step] = s2[step];
 		step++;

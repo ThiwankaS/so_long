@@ -3,7 +3,7 @@ NAME = libft.a
 
 # Compiler and Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I. -g
 
 # Archive tool
 AR = ar rcs

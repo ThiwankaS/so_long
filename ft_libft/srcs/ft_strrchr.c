@@ -16,7 +16,7 @@ char	*ft_strrchr(const char *s, int c)
 {
 	int	count;
 
-	count = ft_strlen(s);
+	count = ft_strlen((const char *)s);
 	if ((unsigned char)s[count] == (unsigned char)c)
 		return ((char *)(s + count));
 	count--;

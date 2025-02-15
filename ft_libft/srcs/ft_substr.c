@@ -38,7 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	src_len = ft_strlen(s);
+	src_len = ft_strlen((const char *)s);
 	if (start >= src_len)
 		return (ft_strdup(""));
 	sub_len = src_len - start;
