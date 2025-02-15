@@ -10,7 +10,8 @@ LIBFT_DIR = ft_libft
 LIBFT_A = $(TARGET_LIBFTA)
 
 SRC_PROGRM = \
-	main.c\
+	srcs/main.c\
+	srcs/utils_main.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

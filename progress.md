@@ -8,11 +8,14 @@ make
 
 ## Directory Structure
 ```
-├── ft_libft     # Custom C library
-├── mlx_linux    # MiniLibX library
-├── srcs         # Game source files
-├── textures     # Game assets
-├── docs         # Documentation files
+├── ft_libft         # Custom C library
+├── mlx_linux        # MiniLibX library
+├── srcs             # Game source files
+   ├── main.c        # Entry to the game
+   ├── utils_main.c  # Contain utility functions for main program
+   ├── helper_main.c # Contain helper function to the main program
+├── textures         # Game assets
+├── docs             # Documentation files
 ```
 
 ## Function Overview
@@ -50,8 +53,8 @@ Start -> Load Map -> Render Window -> Player Input
 ## TODO List
 - [ ] Argument validation
     - [ ] ./so_long <map_name> valid game starting with argument
-    - [ ] if argc > 2 -> too much arguments
-    - [ ] if argc < 2 -> some arguments missing
+    - [x] if argc > 2 -> too much arguments
+    - [x] if argc < 2 -> some arguments missing
 - [ ] Add collision detection
 - [ ] Implement collectible items
 - [ ] Optimize rendering
