@@ -12,6 +12,7 @@ LIBFT_A = $(TARGET_LIBFTA)
 SRC_PROGRM = \
 	srcs/main.c\
 	srcs/utils_main.c\
+	srcs/helper_main.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

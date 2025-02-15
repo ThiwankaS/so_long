@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "../ft_libft/libft.h"
 # include "../ft_libft/ft_printf.h"
 # include "../ft_libft/get_next_line.h"
@@ -24,22 +25,10 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-typedef struct s_data
-{
-	void *img;
-	char *addr;
-	int bites_per_pixel;
-	int line_length;
-	int endian;
-} t_data;
-
-typedef struct s_points
-{
-	int x;
-	int y;
-} t_point;
-
 //utils_main.c
-int ft_error(char *msg);
+int		ft_error(char *msg);
+
+//helper_main.c
+bool	ft_isvalid(char *str);
 
 #endif

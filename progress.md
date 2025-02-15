@@ -51,8 +51,9 @@ Start -> Load Map -> Render Window -> Player Input
 ```
 
 ## TODO List
-- [ ] Argument validation
-    - [ ] ./so_long <map_name> valid game starting with argument
+- [x] Argument validation
+    - [x] ./so_long <map_name> valid game starting with argument
+        - [x] map_name should contain the file extension "*.ber"
     - [x] if argc > 2 -> too much arguments
     - [x] if argc < 2 -> some arguments missing
 - [ ] Add collision detection
