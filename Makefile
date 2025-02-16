@@ -1,7 +1,7 @@
 TARGET_PROGRM = so_long
 
 CMD = gcc
-CFLAGS = -Wall -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address,undefined
+CFLAGS = -Wall -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address,undefined -fPIE
 LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 TARGET_LIBFTA = libft.a
