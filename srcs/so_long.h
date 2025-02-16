@@ -22,13 +22,39 @@
 # include "../ft_libft/get_next_line.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIDTH 1920
-# define HEIGHT 1080
+typedef struct s_texture
+{
+	/* data */
+}	t_texture;
+
+typedef struct s_image
+{
+	/* data */
+}	t_image;
+
+typedef struct s_map
+{
+	/* data */
+}	t_map;
+
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_texture	*textures;
+	t_image		*images;
+	t_map		*maps;
+	int			width;
+	int			height;
+}	t_game;
+
 
 //utils_main.c
-int		ft_error(char *msg);
+int	ft_error(char *msg);
+void	ft_start(t_game *game);
+void	ft_cleanup(t_game *game);
 
 //helper_main.c
-bool	ft_isvalid(char *str);
+bool	ft_isvalid(const char *str);
 
 #endif

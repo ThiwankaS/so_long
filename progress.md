@@ -29,15 +29,43 @@ make
 - `int ft_printf(const char *format, ...)`: Custom printf implementation.
 
 ## Data Structures
+
+### `t_texture`
+```c
+typedef struct s_texture
+{
+	/* data */
+}
+```
+
+### `t_image`
+```c
+typedef struct s_image
+{
+	/* data */
+}	t_image;
+```
+
+### `t_map`
+```c
+typedef struct s_map
+{
+	/* data */
+}	t_map;
+```
+
 ### `t_game`
 ```c
-typedef struct s_game {
-    void    *mlx;
-    void    *win;
-    char    **map;
-    int     player_x;
-    int     player_y;
-} t_game;
+typedef struct s_game
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_texture	*textures;
+	t_image		*images;
+	t_map		*maps;
+	int			width;
+	int			height;
+}	t_game;
 ```
 - `mlx`: MiniLibX connection
 - `win`: Window pointer
@@ -56,7 +84,7 @@ Start -> Load Map -> Render Window -> Player Input
         - [x] map_name should contain the file extension "*.ber"
     - [x] if argc > 2 -> too much arguments
     - [x] if argc < 2 -> some arguments missing
-- [ ] Add collision detection
-- [ ] Implement collectible items
-- [ ] Optimize rendering
+- [x] Adding t_game data structure
+- [x] Intializing and starting the game
+- [x] Adding clean_up fature when game exiting
 
