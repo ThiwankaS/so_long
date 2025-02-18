@@ -16,6 +16,8 @@ SRC_PROGRM = \
 	srcs/map_parse.c\
 	srcs/map_validate.c\
 	srcs/map_valid_path.c\
+	srcs/texture.c\
+	srcs/map_draw.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

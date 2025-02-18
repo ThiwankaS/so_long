@@ -21,7 +21,7 @@ static int	ft_get_map_height(char *file_name)
 	return (height);
 }
 
-char	**ft_load_map(char *file_name)
+char	**ft_load_map(char *file_name, t_info *map_info)
 {
 	int		fd;
 	int		count;
@@ -45,7 +45,7 @@ char	**ft_load_map(char *file_name)
 	}
 	map[count] = NULL;
 	close(fd);
-	if (!ft_map_validate(map))
+	if (!ft_map_validate(map, map_info))
 		return (NULL);
 	return (map);
 }

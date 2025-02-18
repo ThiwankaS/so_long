@@ -101,15 +101,13 @@ static int	ft_surrounded_walls(char **map, t_info *map_info, int x, int y)
 	return (1);
 }
 
-bool	ft_map_validate(char **map)
+bool	ft_map_validate(char **map, t_info *map_info)
 {
-	t_info	map_info;
-
-	ft_map_info_init(&map_info);
-	ft_valid_characters(map, &map_info);
-	ft_is_rectangular(map, &map_info);
-	ft_surrounded_walls(map, &map_info, 0, 0);
-	ft_contains_valid_path(map, &map_info);
+	ft_map_info_init(map_info);
+	ft_valid_characters(map, map_info);
+	ft_is_rectangular(map, map_info);
+	ft_surrounded_walls(map, map_info, 0, 0);
+	ft_contains_valid_path(map, map_info);
 	ft_printf("Map is valid!\n");
 	return (true);
 }

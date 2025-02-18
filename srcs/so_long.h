@@ -24,13 +24,13 @@
 
 # define WIDTH 1820
 # define HEIGHT 980
-# define TILE_SIZE 64
+# define TILE_SIZE 48
 
 typedef struct s_position
 {
 	int		x;
 	int		y;
-	char	standing;
+	char	type;
 }	t_position;
 
 typedef struct s_texture
@@ -56,9 +56,8 @@ typedef struct s_image
 
 typedef struct s_map
 {
-	char		**full;
+	char		**map;
 	t_position	player;
-	t_position	tiles_to_render;
 	t_position	exit;
 }	t_map;
 
@@ -68,7 +67,7 @@ typedef struct s_game
 	void		*win_ptr;
 	t_texture	*textures;
 	t_image		*images;
-	t_map		*maps;
+	t_map		*map;
 	int			width;
 	int			height;
 	int			score;
@@ -101,15 +100,21 @@ int		ft_exit(char **arr);
 bool	ft_isvalid(const char *str);
 
 //map_parse.c
-char	**ft_load_map(char *file_name);
+char	**ft_load_map(char *file_name, t_info *map_info);
 
 //map_validate.c
-bool	ft_map_validate(char **map);
+bool	ft_map_validate(char **map, t_info *map_info);
 
 //map_validate_path.c
 int		ft_contains_valid_path(char **map, t_info *map_info);
 
 //temp function
 void ft_print_map(char **map);
+
+//texture.c
+void	ft_load_textures(t_game *game);
+
+//map_draw.c
+void ft_draw_map(t_game *game, char **map);
 
 #endif
