@@ -31,15 +31,22 @@ int	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-static void ft_init(t_game *game)
-{
-	game->mlx_ptr = mlx_init();
-	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "Test window");
-}
+// static void ft_init(t_game *game)
+// {
+// 	game->mlx_ptr = mlx_init();
+// 	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "Test window");
+// }
 
-void	ft_start(t_game *game)
+void	ft_start(t_game *game, char *map_name)
 {
-	ft_init(game);
-	mlx_hook(game->win_ptr, 17, 0, close_window, game);
-	mlx_loop(game->mlx_ptr);
+	char	**map;
+
+	(void)game;
+	// ft_init(game);
+	// mlx_hook(game->win_ptr, 17, 0, close_window, game);
+	map = ft_load_map(map_name);
+	if (map)
+		ft_printf("MAP successfully loded!\n");
+	ft_exit(map);
+	//mlx_loop(game->mlx_ptr);
 }

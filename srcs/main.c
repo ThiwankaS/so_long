@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 			game = ft_calloc(1, sizeof(t_game));
 			if(!game)
 				ft_error("MEMORY ALLOCATION FALIUR!");
-			ft_start(game);
+			ft_start(game, argv[1]);
 			ft_cleanup(game);
 		}
 	}

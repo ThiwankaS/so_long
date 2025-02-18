@@ -13,6 +13,9 @@ SRC_PROGRM = \
 	srcs/main.c\
 	srcs/utils_main.c\
 	srcs/helper_main.c\
+	srcs/map_parse.c\
+	srcs/map_validate.c\
+	srcs/map_valid_path.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

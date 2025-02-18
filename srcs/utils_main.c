@@ -25,3 +25,17 @@ void	ft_cleanup(t_game *game)
 	ft_printf("width : %d\n", game->width);
 	ft_printf("height : %d\n", game->height);
 }
+
+int	ft_exit(char **arr)
+{
+	int	count;
+
+	count = 0;
+	while (arr[count])
+	{
+		free(arr[count]);
+		count++;
+	}
+	free(arr);
+	return (1);
+}

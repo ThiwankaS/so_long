@@ -85,6 +85,15 @@ Start -> Load Map -> Render Window -> Player Input
     - [x] if argc > 2 -> too much arguments
     - [x] if argc < 2 -> some arguments missing
 - [x] Adding t_game data structure
-- [x] Intializing and starting the game
-- [x] Adding clean_up fature when game exiting
+- [ ] Intializing and starting the game
+	- [x] read and load a map
+	- [x] map validation
+		- [x] contains 'P', 'E', 'C', '1' and '0' charaters only
+		- [x] contains a valid path
+		- [x] contains one 'P', one 'E' and at least one 'C'
+		- [x] surrounded by walls
+		- [x] meet the minimum size requirements
+	- [x] read and load textures
+- [ ] Adding clean_up fature when game exiting
+	- [x] closing the window with the x button
 

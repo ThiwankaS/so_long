@@ -22,8 +22,9 @@
 # include "../ft_libft/get_next_line.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1820
+# define HEIGHT 980
+# define TILE_SIZE 64
 
 typedef struct s_position
 {
@@ -79,13 +80,36 @@ typedef struct s_game
 	int			count_player;
 }	t_game;
 
+typedef struct s_info
+{
+	int	p_count;
+	int	e_count;
+	int	c_count;
+	int	s_count;
+	int	w_count;
+	int	height;
+	int	width;
+}	t_info;
 
 //utils_main.c
-int	ft_error(char *msg);
-void	ft_start(t_game *game);
+int		ft_error(char *msg);
+void	ft_start(t_game *game, char *map_name);
 void	ft_cleanup(t_game *game);
+int		ft_exit(char **arr);
 
 //helper_main.c
 bool	ft_isvalid(const char *str);
+
+//map_parse.c
+char	**ft_load_map(char *file_name);
+
+//map_validate.c
+bool	ft_map_validate(char **map);
+
+//map_validate_path.c
+int		ft_contains_valid_path(char **map, t_info *map_info);
+
+//temp function
+void ft_print_map(char **map);
 
 #endif
