@@ -12,7 +12,12 @@ static	void ft_draw_texture(t_game *game, char **map, int x, int y)
 	else if(map[y][x] == 'P')
 		img = game->textures->player;
 	else if(map[y][x] == 'E')
-		img = game->textures->exit;
+	{
+		if(game->count_colectibles != 0)
+			img = game->textures->exit_open;
+		else
+			img = game->textures->exit;
+	}
 	else if(map[y][x] == 'C')
 		img = game->textures->collectible;
 	if(img)

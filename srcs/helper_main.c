@@ -35,6 +35,7 @@ static void ft_init(t_game *game, char **map, t_info *map_info)
 {
 	game->mlx_ptr = mlx_init();
 	ft_load_textures(game);
+	game->count_colectibles = 2;
 	game->win_ptr = mlx_new_window(game->mlx_ptr, map_info->width * TILE_SIZE, map_info->height * TILE_SIZE, "So long");
 	ft_draw_map(game, map);
 }
