@@ -20,10 +20,8 @@ int	ft_error(char *msg)
 
 void	ft_cleanup(t_game *game)
 {
-	game->height = 1000;
-	game->width = 2000;
-	ft_printf("width : %d\n", game->width);
-	ft_printf("height : %d\n", game->height);
+	ft_printf("width : %d\n", game->img_width);
+	ft_printf("height : %d\n", game->img_height);
 }
 
 int	ft_exit(char **arr)
@@ -38,4 +36,27 @@ int	ft_exit(char **arr)
 	}
 	free(arr);
 	return (1);
+}
+
+void	ft_set_point(char **map, char c, int *x, int *y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while(map[j])
+	{
+		while(map[j][i])
+		{
+			if(map[j][i] == c)
+			{
+				*x = i;
+				*y = j;
+			}
+			i++;
+		}
+		i = 0;
+		j++;
+	}
 }

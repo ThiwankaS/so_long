@@ -47,29 +47,6 @@ void ft_print_map(char **map)
 
 }
 
-void	ft_set_starting_point(char **map, int *x, int *y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while(map[j])
-	{
-		while(map[j][i])
-		{
-			if(map[j][i] == 'P')
-			{
-				*x = i;
-				*y = j;
-			}
-			i++;
-		}
-		i = 0;
-		j++;
-	}
-}
-
 static int ft_check_path(char **map)
 {
 	int	i;
@@ -98,7 +75,7 @@ int	ft_contains_valid_path(char **map, t_info *map_info)
 	char **map_copy;
 
 	map_copy = ft_duplicate_map(map, map_info);
-	ft_set_starting_point(map, &x, &y);
+	ft_set_point(map, 'P', &x, &y);
 	ft_flood_fill(map_copy, x, y);
 	ft_check_path(map_copy);
 	ft_exit(map_copy);
