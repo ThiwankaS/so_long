@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/16 12:36:27 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/21 05:28:07 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,19 @@
 # include "../ft_libft/get_next_line.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIDTH 1820
-# define HEIGHT 980
-# define TILE_SIZE 64
+#define TILE_SIZE 64
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_LEFT 65361
+#define KEY_UP 65362
+#define KEY_RIGHT 65363
+#define KEY_DOWN 65364
+#define KEY_ESC 65307
+#define KEY_OK 65293
+#define KEY_YES 121
+#define KEY_NO 110
 
 typedef struct s_position
 {
@@ -58,6 +68,7 @@ typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*temp;
 	char		**map;
 	t_texture	*textures;
 	t_position	*player;
@@ -66,7 +77,6 @@ typedef struct s_game
 	int			score;
 	int			img_width;
 	int			img_height;
-	int			count_colectibles;
 	int			count_moves;
 }	t_game;
 
@@ -102,5 +112,19 @@ void ft_draw_map(t_game *game);
 int	ft_key_press(int keycode, t_game *game);
 
 void ft_configure_vars(t_game *game, char **map, t_info *map_info);
+
+int	ft_close_window(t_game *game);
+int	ft_focus_out(void);
+int	ft_focus_in(void);
+int ft_exit_confirm_key(int keycode, t_game *game);
+int ft_exit_confirm_key_win(int keycode, t_game *game);
+
+void ft_hooks(t_game *game);
+
+int	ft_exit_confirmation(t_game *game);
+
+int	ft_close_window_confirmation(t_game *game);
+int	ft_close_window_win(t_game *game);
+int ft_win(t_game *game);
 
 #endif

@@ -20,6 +20,9 @@ SRC_PROGRM = \
 	srcs/map_draw.c\
 	srcs/moves.c\
 	srcs/helper_map.c\
+	srcs/game_hooks.c\
+	srcs/game_window.c\
+	srcs/helper_window.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

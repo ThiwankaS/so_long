@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:43 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/16 11:53:57 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/21 03:43:19 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_error(char *msg)
 
 void	ft_cleanup(t_game *game)
 {
-	ft_printf("width : %d\n", game->img_width);
-	ft_printf("height : %d\n", game->img_height);
+	ft_exit(game->map);
+	ft_close_window(game);
 }
 
 int	ft_exit(char **arr)
