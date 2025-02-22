@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 03:02:01 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 04:57:35 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,9 @@ int		ft_close_window_confirmation(t_game *game);
 int		ft_close_window_win(t_game *game);
 int		ft_win(t_game *game);
 void	ft_map_info_init(t_info *map_info);
+
+int		ft_get_width(char **map);
+int		ft_get_height(char **map);
+int		ft_set_window_size(t_game *game);
 
 #endif

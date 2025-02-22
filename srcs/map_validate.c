@@ -6,15 +6,33 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 06:14:58 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 05:20:25 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void print_map(char **map)
+{
+	int i, j;
+	i = 0;
+	j = 0;
+	while(map[i])
+	{
+		while(map[i][j])
+		{
+			ft_printf("%c",map[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	ft_printf("\n");
+}
+
 static void	ft_count_charaters(char **map, t_info *map_info, int x, int y)
 {
-	while (map[y][x])
+	while (map[y])
 	{
 		while (map[y][x])
 		{
@@ -32,16 +50,26 @@ static void	ft_count_charaters(char **map, t_info *map_info, int x, int y)
 				ft_error("INVALID MAP(UNKNOWN CHARACTER)!");
 			x++;
 		}
-		map_info->width = x;
-		y++;
 		x = 0;
+		y++;
 	}
-	map_info->height = y;
+	map_info->width = ft_get_width(map);
+	map_info->height = ft_get_height(map);
 }
 
 static int	ft_valid_characters(char **map, t_info *map_info)
 {
+	if (!map)
+		ft_error("INVALID MAP!");
+	print_map(map);
 	ft_count_charaters(map, map_info, 0, 0);
+	ft_printf("map {p} : %d\n", map_info->p_count);
+	ft_printf("map {c} : %d\n", map_info->c_count);
+	ft_printf("map {e} : %d\n", map_info->e_count);
+	ft_printf("map {s} : %d\n", map_info->s_count);
+	ft_printf("map {w} : %d\n", map_info->w_count);
+	ft_printf("map {height} : %d\n", map_info->height);
+	ft_printf("map {width} : %d\n", map_info->width);
 	if (map_info->width < 1 || map_info->c_count < 1 || map_info->s_count < 1)
 		ft_error("INVALID MAP (SHOULD CONTAIN ALL COMPONENTS)!");
 	else if (map_info->p_count != 1)
@@ -56,21 +84,18 @@ static int	ft_valid_characters(char **map, t_info *map_info)
 static int	ft_is_rectangular(char **map, t_info *map_info)
 {
 	int	x;
-	int	y;
-
-	if (map_info->width <= map_info->height)
+	int	length;
+	if (map_info->width == map_info->height)
 		ft_error("INVALID MAP (SHOULD BE RECTANGULAR)!");
 	else
 	{
-		y = 0;
-		while (y < map_info->height)
+		x = 0;
+		while (x < map_info->height)
 		{
-			x = 0;
-			while (map[y][x])
-				x++;
-			if (x != map_info->width)
-				ft_error("INVALID MAP (SHOULD BE RECTANGULAR)!");
-			y++;
+			length = ft_strlen(map[x]) - 1;
+			if (length != map_info->width)
+				ft_error("INVALID MAP (SHOULD BE RECTANGULAR 02)!");
+			x++;
 		}
 	}
 	return (1);
@@ -81,16 +106,17 @@ static int	ft_surrounded_walls(char **map, t_info *map_info, int x, int y)
 	while (x < map_info->width - 1)
 	{
 		if (map[y][x] != '1')
-			ft_error("INVALID MAP (SHOULD SURROUNDED BY WALLS)!");
+			ft_error("INVALID MAP (SHOULD SURROUNDED BY WALLS 1)!");
 		x++;
 	}
 	y++;
 	while (y < map_info->height)
 	{
-		if (map[y][0] != '1' || map[y][map_info->width - 2] != '1')
-			ft_error("INVALID MAP (SHOULD SURROUNDED BY WALLS)!");
+		if (map[y][0] != '1' || map[y][map_info->width - 1] != '1')
+			ft_error("INVALID MAP (SHOULD SURROUNDED BY WALLS 2)!");
 		y++;
 	}
+	x = 0;
 	y = map_info->height - 1;
 	while (x < map_info->width - 1)
 	{
