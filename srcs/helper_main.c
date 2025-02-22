@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:35:12 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 04:05:14 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/21 05:41:22 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ bool	ft_isvalid(const char *str)
 	return (true);
 }
 
-static void ft_init(t_game *game, char **map, t_info *map_info)
+static void	ft_init(t_game *game, char **map, t_info *map_info)
 {
+	int	width;
+	int	height;
+
+	width = (map_info->width - 1) * TILE_SIZE;
+	height = map_info->height * TILE_SIZE;
 	game->mlx_ptr = mlx_init();
 	ft_load_textures(game);
 	ft_configure_vars(game, map, map_info);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, map_info->width * TILE_SIZE, map_info->height * TILE_SIZE, "So long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, width, height, "So long");
 	ft_draw_map(game);
 	ft_hooks(game);
 }
@@ -41,7 +46,7 @@ void	ft_start(t_game *game, char *map_name)
 	t_info	*map_info;
 
 	map_info = malloc(sizeof(t_info));
-	if(!map_info)
+	if (!map_info)
 		ft_error("MEMORY ALLOCATION FALIUR!");
 	map = ft_load_map(map_name, map_info);
 	if (!map)

@@ -6,29 +6,17 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:02 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 03:44:04 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/21 06:14:58 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_map_info_init(t_info *map_info)
-{
-	map_info->c_count = 0;
-	map_info->e_count = 0;
-	map_info->p_count = 0;
-	map_info->s_count = 0;
-	map_info->w_count = 0;
-	map_info->w_count = 0;
-	map_info->height = 0;
-	map_info->width = 0;
-}
-
 static void	ft_count_charaters(char **map, t_info *map_info, int x, int y)
 {
-	while(map[y][x])
+	while (map[y][x])
 	{
-		while(map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'P')
 				map_info->p_count++;
@@ -38,7 +26,7 @@ static void	ft_count_charaters(char **map, t_info *map_info, int x, int y)
 				map_info->e_count++;
 			else if (map[y][x] == '1')
 				map_info->w_count++;
-			else if	(map[y][x] == '0')
+			else if (map[y][x] == '0')
 				map_info->s_count++;
 			else if (map[y][x] != '\n' && map[y][x] != '\0')
 				ft_error("INVALID MAP(UNKNOWN CHARACTER)!");
@@ -120,6 +108,5 @@ bool	ft_map_validate(char **map, t_info *map_info)
 	ft_is_rectangular(map, map_info);
 	ft_surrounded_walls(map, map_info, 0, 0);
 	ft_contains_valid_path(map, map_info);
-	ft_printf("Map is valid!\n");
 	return (true);
 }

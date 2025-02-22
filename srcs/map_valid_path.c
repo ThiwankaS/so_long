@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:14 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 03:44:16 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/21 06:10:10 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**ft_duplicate_map(char **map, t_info *map_info)
 {
-	int	y;
-	char **map_copy;
+	int		y;
+	char	**map_copy;
 
 	map_copy = malloc(sizeof(char *) * (map_info->height + 1));
 	if (!map_copy)
@@ -30,9 +30,9 @@ char	**ft_duplicate_map(char **map, t_info *map_info)
 	return (map_copy);
 }
 
-static void ft_flood_fill(char **map, int x, int y)
+static void	ft_flood_fill(char **map, int x, int y)
 {
-	if(map[y][x] == '1' || map[y][x] == 'X')
+	if (map[y][x] == '1' || map[y][x] == 'X')
 		return ;
 	map[y][x] = 'X';
 	ft_flood_fill(map, x + 1, y);
@@ -41,36 +41,18 @@ static void ft_flood_fill(char **map, int x, int y)
 	ft_flood_fill(map, x, y - 1);
 }
 
-void ft_print_map(char **map)
-{
-	int i = 0;
-	int j = 0;
-	while(map[j])
-	{
-		while (map[j][i])
-		{
-			ft_printf("%c", map[j][i]);
-			i++;
-		}
-		i = 0;
-		j++;
-	}
-	ft_printf("\n");
-
-}
-
-static int ft_check_path(char **map)
+static int	ft_check_path(char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while(map[j])
+	while (map[j])
 	{
-		while(map[j][i])
+		while (map[j][i])
 		{
-			if(map[j][i] == 'C' || map[j][i] == 'E')
+			if (map[j][i] == 'C' || map[j][i] == 'E')
 				ft_error("INVALID MAP (COLLECTIBLE OR EXIT NOT ACCESSIBLE)!");
 			i++;
 		}
@@ -82,9 +64,9 @@ static int ft_check_path(char **map)
 
 int	ft_contains_valid_path(char **map, t_info *map_info)
 {
-	int	x;
-	int	y;
-	char **map_copy;
+	int		x;
+	int		y;
+	char	**map_copy;
 
 	map_copy = ft_duplicate_map(map, map_info);
 	ft_set_point(map, 'P', &x, &y);
