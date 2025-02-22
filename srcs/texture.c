@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:43:39 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 01:57:04 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 02:04:53 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*ft_load(t_game *game, char *file_name)
 
 	width = &game->img_width;
 	height = &game->img_height;
-	path = ft_strconcat("resources/", file_name);
+	path = ft_strconcat("textures/", file_name);
 	ptr = mlx_xpm_file_to_image(game->mlx_ptr, path, width, height);
 	free(path);
 	return (ptr);

@@ -10,19 +10,19 @@ LIBFT_DIR = ft_libft
 LIBFT_A = $(TARGET_LIBFTA)
 
 SRC_PROGRM = \
-	srcs/main.c\
-	srcs/utils_main.c\
-	srcs/helper_main.c\
-	srcs/map_parse.c\
-	srcs/map_validate.c\
-	srcs/map_valid_path.c\
-	srcs/texture.c\
-	srcs/map_draw.c\
-	srcs/moves.c\
-	srcs/helper_map.c\
 	srcs/game_hooks.c\
 	srcs/game_window.c\
+	srcs/helper_main.c\
+	srcs/helper_map.c\
 	srcs/helper_window.c\
+	srcs/main.c\
+	srcs/map_draw.c\
+	srcs/map_parse.c\
+	srcs/map_valid_path.c\
+	srcs/map_validate.c\
+	srcs/moves.c\
+	srcs/texture.c\
+	srcs/utils_main.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 
