@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:43 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 06:24:11 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 12:11:00 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	ft_exit(char **arr)
 		free(arr[count]);
 		count++;
 	}
-	free(arr);
+	if(arr)
+		free(arr);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:24 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 05:22:51 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:30:02 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_get_width(char **map)
 			width = length;
 		x++;
 	}
-	width--;
 	return (width);
 }
 
@@ -73,6 +72,32 @@ int	ft_get_height(char **map)
 	return (height);
 }
 
+void	ft_copy_line(char **map, int height, int fd)
+{
+	int		count;
+	int		length;
+	char	*str;
+	char	*temp;
+
+	count = 0;
+	length = 0;
+	while (count < height)
+	{
+		str = get_next_line(fd);
+		length = ft_count_nl(str);
+		if (length > 0)
+		{
+			temp = malloc(sizeof(char) * (length + 1));
+			map[count] = ft_strncpy(temp, str, length);
+		}
+		else
+			map[count] = NULL;
+		if(str)
+			free(str);
+		count++;
+	}
+}
+
 char	**ft_load_map(char *file_name, t_info *map_info)
 {
 	int		fd;
@@ -84,18 +109,13 @@ char	**ft_load_map(char *file_name, t_info *map_info)
 	height = ft_get_map_height(file_name);
 	if (height < 3)
 		ft_error("INVALID MAP(TOO SMALL)!");
-	map = malloc(sizeof(char *) * (height + 1));
+	map = malloc((height + 1) * sizeof(char *));
 	if (!map)
 		ft_error("MEMORY ALLOCATION FAILED!");
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error("FAILED TO OPEN THE MAP!");
-	while (count < height)
-	{
-		map[count] = get_next_line(fd);
-		count++;
-	}
-	map[count] = NULL;
+	ft_copy_line(map, height, fd);
 	close(fd);
 	if (!ft_map_validate(map, map_info))
 		return (NULL);

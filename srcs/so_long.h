@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 04:57:35 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:51:39 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*temp;
+	void		*img;
 	char		**map;
 	t_texture	*textures;
 	t_position	*player;
@@ -123,10 +124,13 @@ int		ft_exit_confirmation(t_game *game);
 int		ft_close_window_confirmation(t_game *game);
 int		ft_close_window_win(t_game *game);
 int		ft_win(t_game *game);
-void	ft_map_info_init(t_info *map_info);
+void	ft_map_info_init(t_info *map_info, char **map);
 
 int		ft_get_width(char **map);
 int		ft_get_height(char **map);
-int		ft_set_window_size(t_game *game);
+int		ft_set_window_size(t_game *game, int *width, int *height, int *size);
 
+void	print_map(char **map, t_info *map_info);
+char	*ft_strncpy(char *dest, char *src, int n);
+int		ft_count_nl(char *str);
 #endif

@@ -1,8 +1,8 @@
 TARGET_PROGRM = so_long
 
 CMD = gcc
-CFLAGS = -Wall -Wextra -I/usr/include -Imlx_linux -O3 -g -fsanitize=address,undefined -fPIE
-LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+CFLAGS = -Wall -Wextra -I/usr/include -Imlx_linux -O3 -g -fPIE
+LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 TARGET_LIBFTA = libft.a
 
@@ -12,6 +12,7 @@ LIBFT_A = $(TARGET_LIBFTA)
 SRC_PROGRM = \
 	srcs/game_hooks.c\
 	srcs/game_window.c\
+	srcs/helper_game.c\
 	srcs/helper_main.c\
 	srcs/helper_map.c\
 	srcs/helper_window.c\
@@ -26,13 +27,13 @@ SRC_PROGRM = \
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 
-HEADER = so_long.h -I./ft_libft -I./ft_libft/ft_gnl -I./ft_libft/ft_printf -Imlx_linux
+HEADER = so_long.h ft_libft/libft.h ft_libft/ft_gnl/get_next_line.h ft_libft/ft_printf/ft_printf.h mlx_linux/mlx.h
 
 all: $(LIBFT_A) $(TARGET_PROGRM)
 
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
-	mv $(LIBFT_DIR)/$(TARGET_LIBFTA) .
+	mv $(LIBFT_DIR)/$(TARGET_LIBFTA) .  # Moved here
 
 $(TARGET_PROGRM): $(OBJ_PROGRM) $(LIBFT_A)
 	$(CMD) $(CFLAGS) -o $@ $^ $(LFLAGS)
