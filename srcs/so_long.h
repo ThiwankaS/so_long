@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 06:22:25 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/22 03:02:01 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ typedef struct s_info
 
 typedef struct s_game
 {
+	int			score;
+	int			img_width;
+	int			img_height;
+	int			count_moves;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*temp;
@@ -74,10 +78,6 @@ typedef struct s_game
 	t_position	*player;
 	t_position	*exit;
 	t_info		*map_info;
-	int			score;
-	int			img_width;
-	int			img_height;
-	int			count_moves;
 }	t_game;
 
 //utils_main.c
