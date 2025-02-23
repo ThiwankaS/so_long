@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:35:58 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 13:55:17 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/23 21:49:14 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char *argv[])
 			if (!game)
 				ft_error("MEMORY ALLOCATION FALIUR!");
 			ft_start(game, argv[1]);
-			ft_cleanup(game);
 		}
 	}
 	else
