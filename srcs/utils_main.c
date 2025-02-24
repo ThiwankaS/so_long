@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:43 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 12:11:00 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/24 02:57:00 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@ int	ft_error(char *msg)
 void	ft_cleanup(t_game *game)
 {
 	ft_exit(game->map);
-	ft_close_window(game);
+	ft_clean_textures(game);
+	ft_clean_game(game);
+}
+
+void	ft_clear(t_game *game, char *msg)
+{
+	ft_cleanup(game);
+	ft_error(msg);
 }
 
 int	ft_exit(char **arr)
@@ -29,12 +36,12 @@ int	ft_exit(char **arr)
 	int	count;
 
 	count = 0;
-	while (arr[count])
+	while (arr && arr[count])
 	{
 		free(arr[count]);
 		count++;
 	}
-	if(arr)
+	if (arr)
 		free(arr);
 	return (1);
 }

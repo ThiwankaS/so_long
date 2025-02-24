@@ -6,13 +6,13 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:24 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 13:30:02 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/24 02:56:20 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_get_map_height(char *file_name)
+static int	ft_get_map_height(t_game *game, char *file_name)
 {
 	int		fd;
 	int		height;
@@ -20,10 +20,10 @@ static int	ft_get_map_height(char *file_name)
 
 	height = 0;
 	if (!file_name)
-		ft_error("FAILED TO OPEN THE MAP (NULL FILE NAME)!");
+		ft_clear(game, "FAILED TO OPEN THE MAP (NULL FILE NAME)!");
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		ft_error("FAILED TO OPEN THE MAP!");
+		ft_clear(game, "FAILED TO OPEN THE MAP!");
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -41,8 +41,6 @@ int	ft_get_width(char **map)
 	int		width;
 	int		length;
 
-	if (!map || !*map)
-		ft_error("INVALID MAP!");
 	x = 0;
 	width = 0;
 	while (map[x])
@@ -60,8 +58,6 @@ int	ft_get_height(char **map)
 	int		x;
 	int		height;
 
-	if (!map || !*map)
-		ft_error("INVALID MAP!");
 	x = 0;
 	height = 0;
 	while (map[x])
@@ -92,32 +88,27 @@ void	ft_copy_line(char **map, int height, int fd)
 		}
 		else
 			map[count] = NULL;
-		if(str)
+		if (str)
 			free(str);
 		count++;
 	}
+	map[count] = NULL;
 }
 
-char	**ft_load_map(char *file_name, t_info *map_info)
+void	ft_load_map(t_game *game, char *file_name)
 {
 	int		fd;
-	int		count;
-	char	**map;
 	int		height;
 
-	count = 0;
-	height = ft_get_map_height(file_name);
+	height = ft_get_map_height(game, file_name);
 	if (height < 3)
-		ft_error("INVALID MAP(TOO SMALL)!");
-	map = malloc((height + 1) * sizeof(char *));
-	if (!map)
-		ft_error("MEMORY ALLOCATION FAILED!");
+		ft_clear(game, "INVALID MAP(TOO SMALL)!");
+	game->map = malloc((height + 1) * sizeof(char *));
+	if (!game->map)
+		ft_clear(game, "MEMORY ALLOCATION FAILED!");
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		ft_error("FAILED TO OPEN THE MAP!");
-	ft_copy_line(map, height, fd);
+		ft_clear(game, "FAILED TO OPEN THE MAP!");
+	ft_copy_line(game->map, height, fd);
 	close(fd);
-	if (!ft_map_validate(map, map_info))
-		return (NULL);
-	return (map);
 }

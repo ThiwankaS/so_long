@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/22 13:51:39 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/24 02:59:24 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ void	ft_cleanup(t_game *game);
 bool	ft_isvalid(const char *str);
 
 //map_parse.c
-char	**ft_load_map(char *file_name, t_info *map_info);
+void	ft_load_map(t_game *game, char *file_name);
 
 //map_validate.c
-bool	ft_map_validate(char **map, t_info *map_info);
+bool	ft_map_validate(char **map, t_info *info);
 
 //map_validate_path.c
-int		ft_contains_valid_path(char **map, t_info *map_info);
+bool	ft_contains_valid_path(char **map, t_info *info);
 
 //texture.c
 void	ft_load_textures(t_game *game);
@@ -109,7 +109,7 @@ void	ft_draw_map(t_game *game);
 //moves.c
 int		ft_key_press(int keycode, t_game *game);
 
-void	ft_configure_vars(t_game *game, char **map, t_info *map_info);
+void	ft_configure_vars(t_game *game);
 
 int		ft_close_window(t_game *game);
 int		ft_focus_out(void);
@@ -124,7 +124,7 @@ int		ft_exit_confirmation(t_game *game);
 int		ft_close_window_confirmation(t_game *game);
 int		ft_close_window_win(t_game *game);
 int		ft_win(t_game *game);
-void	ft_map_info_init(t_info *map_info, char **map);
+int		ft_map_info_init(char **map, t_info *map_info);
 
 int		ft_get_width(char **map);
 int		ft_get_height(char **map);
@@ -133,4 +133,10 @@ int		ft_set_window_size(t_game *game, int *width, int *height, int *size);
 void	print_map(char **map, t_info *map_info);
 char	*ft_strncpy(char *dest, char *src, int n);
 int		ft_count_nl(char *str);
+
+int		ft_clean_textures(t_game *game);
+void	ft_clear(t_game *game, char *msg);
+int		ft_clean_game(t_game *game);
+bool	ft_valid_char(char c);
+
 #endif

@@ -24,6 +24,7 @@ SRC_PROGRM = \
 	srcs/moves.c\
 	srcs/texture.c\
 	srcs/utils_main.c\
+	srcs/utils_window.c\
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 

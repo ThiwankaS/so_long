@@ -6,22 +6,22 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 03:44:14 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/21 06:10:10 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/24 02:13:56 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**ft_duplicate_map(char **map, t_info *map_info)
+char	**ft_duplicate_map(char **map, t_info *info)
 {
 	int		y;
 	char	**map_copy;
 
-	map_copy = malloc(sizeof(char *) * (map_info->height + 1));
+	map_copy = malloc(sizeof(char *) * (info->height + 1));
 	if (!map_copy)
-		ft_error("MEMORY ALLOCATION FAILED!");
+		return (NULL);
 	y = 0;
-	while (y < map_info->height)
+	while (y < info->height)
 	{
 		map_copy[y] = ft_strdup(map[y]);
 		y++;
@@ -30,18 +30,20 @@ char	**ft_duplicate_map(char **map, t_info *map_info)
 	return (map_copy);
 }
 
-static void	ft_flood_fill(char **map, int x, int y)
+static void	ft_flood_fill(char **map, t_info *info, int x, int y)
 {
+	if (x < 0 || x >= info->width || y < 0 || y >= info->height)
+		return ;
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return ;
 	map[y][x] = 'X';
-	ft_flood_fill(map, x + 1, y);
-	ft_flood_fill(map, x - 1, y);
-	ft_flood_fill(map, x, y + 1);
-	ft_flood_fill(map, x, y - 1);
+	ft_flood_fill(map, info, x + 1, y);
+	ft_flood_fill(map, info, x - 1, y);
+	ft_flood_fill(map, info, x, y + 1);
+	ft_flood_fill(map, info, x, y - 1);
 }
 
-static int	ft_check_path(char **map)
+static bool	ft_check_path(char **map)
 {
 	int	i;
 	int	j;
@@ -53,25 +55,29 @@ static int	ft_check_path(char **map)
 		while (map[j][i])
 		{
 			if (map[j][i] == 'C' || map[j][i] == 'E')
-				ft_error("INVALID MAP (COLLECTIBLE OR EXIT NOT ACCESSIBLE)!");
+				return (false);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-	return (1);
+	return (true);
 }
 
-int	ft_contains_valid_path(char **map, t_info *map_info)
+bool	ft_contains_valid_path(char **map, t_info *info)
 {
 	int		x;
 	int		y;
 	char	**map_copy;
 
-	map_copy = ft_duplicate_map(map, map_info);
+	map_copy = ft_duplicate_map(map, info);
 	ft_set_point(map, 'P', &x, &y);
-	ft_flood_fill(map_copy, x, y);
-	ft_check_path(map_copy);
+	ft_flood_fill(map_copy, info, x, y);
+	if (!ft_check_path(map_copy))
+	{
+		ft_exit(map_copy);
+		return (false);
+	}
 	ft_exit(map_copy);
-	return (1);
+	return (true);
 }
