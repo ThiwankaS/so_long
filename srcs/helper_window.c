@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 04:26:22 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/24 01:06:43 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:13:27 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_win(t_game *game)
 
 	width = 250;
 	height = 100;
+	game->count_moves++;
 	s1 = "Congratulations, You won!";
 	s2 = "[Press ENTER to Exit]";
 	game->temp = mlx_new_window(game->mlx_ptr, width, height, "Exit");

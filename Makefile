@@ -1,6 +1,6 @@
 TARGET_PROGRM = so_long
 
-CMD = gcc
+CMD = cc
 CFLAGS = -Wall -Wextra -I/usr/include -Imlx_linux -O3 -g -fPIE
 LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
@@ -8,6 +8,9 @@ TARGET_LIBFTA = libft.a
 
 LIBFT_DIR = ft_libft
 LIBFT_A = $(TARGET_LIBFTA)
+
+# MiniLibX library
+MLX_LIB = mlx_linux/libmlx_Linux.a
 
 SRC_PROGRM = \
 	srcs/game_hooks.c\
@@ -28,15 +31,22 @@ SRC_PROGRM = \
 
 OBJ_PROGRM = $(SRC_PROGRM:.c=.o)
 
-HEADER = so_long.h ft_libft/libft.h ft_libft/ft_gnl/get_next_line.h ft_libft/ft_printf/ft_printf.h mlx_linux/mlx.h
+HEADER = so_long.h ft_libft/libft.h ft_libft/ft_gnl/get_next_line.h \
+         ft_libft/ft_printf/ft_printf.h mlx_linux/mlx.h
 
-all: $(LIBFT_A) $(TARGET_PROGRM)
+all: $(LIBFT_A) $(MLX_LIB) $(TARGET_PROGRM)
 
+# Build the libft library and move it to the current directory
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
-	mv $(LIBFT_DIR)/$(TARGET_LIBFTA) .  # Moved here
+	mv $(LIBFT_DIR)/$(TARGET_LIBFTA) .
 
-$(TARGET_PROGRM): $(OBJ_PROGRM) $(LIBFT_A)
+# Build/update the MiniLibX graphic library
+$(MLX_LIB):
+	$(MAKE) -C mlx_linux do_configure
+
+# Link the final executable with objects from your project, libft and MiniLibX
+$(TARGET_PROGRM): $(OBJ_PROGRM) $(LIBFT_A) $(MLX_LIB)
 	$(CMD) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 %.o: %.c $(HEADER)
@@ -45,10 +55,12 @@ $(TARGET_PROGRM): $(OBJ_PROGRM) $(LIBFT_A)
 clean:
 	rm -rf $(OBJ_PROGRM)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C mlx_linux clean
 
 fclean: clean
 	rm -rf $(TARGET_PROGRM) $(TARGET_LIBFTA)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C mlx_linux clean
 
 re: fclean all
 
