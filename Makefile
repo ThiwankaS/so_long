@@ -13,12 +13,9 @@ LIBFT_A = $(TARGET_LIBFTA)
 MLX_LIB = minilibx-linux/libmlx_Linux.a
 
 SRC_PROGRM = \
-	srcs/game_hooks.c\
 	srcs/game_window.c\
-	srcs/helper_game.c\
 	srcs/helper_main.c\
 	srcs/helper_map.c\
-	srcs/helper_window.c\
 	srcs/main.c\
 	srcs/map_draw.c\
 	srcs/map_parse.c\
@@ -49,7 +46,7 @@ $(MLX_LIB):
 $(TARGET_PROGRM): $(OBJ_PROGRM) $(LIBFT_A) $(MLX_LIB)
 	$(CMD) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
-%.o: %.c $(HEADER)
+%.o : %.c $(HEADER)
 	$(CMD) $(CFLAGS) -c $< -o $@
 
 clean:
