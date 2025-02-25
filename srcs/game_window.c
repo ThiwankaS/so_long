@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 04:04:51 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/24 03:12:16 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/25 05:07:34 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,32 @@ int	ft_close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-int	ft_focus_out(void)
+static int	ft_focus_out(void)
 {
 	return (0);
 }
 
-int	ft_focus_in(void)
+static int	ft_focus_in(void)
 {
 	return (0);
 }
 
-int	ft_exit_confirm_key(int keycode, t_game *game)
+void	ft_hooks(t_game *game)
 {
-	if (keycode == KEY_YES)
-	{
-		ft_close_window_win(game);
-		ft_cleanup(game);
-		exit(EXIT_SUCCESS);
-	}
-	else if (keycode == KEY_NO)
-		ft_close_window_confirmation(game);
-	return (0);
+	mlx_key_hook(game->win_ptr, ft_key_press, game);
+	mlx_hook(game->win_ptr, 17, 0, ft_close_window, game);
+	mlx_hook(game->win_ptr, 9, 1L << 21, ft_focus_in, game);
+	mlx_hook(game->win_ptr, 10, 1L << 21, ft_focus_out, game);
 }
 
-int	ft_exit_confirm_key_win(int keycode, t_game *game)
+int	ft_set_window_size(t_game *game, int *width, int *height, int *size)
 {
-	if (keycode == KEY_OK)
-	{
-		ft_close_window_win(game);
-		ft_cleanup(game);
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
+	int	sc_width;
+	int	sc_height;
+
+	mlx_get_screen_size(game->mlx_ptr, &sc_width, &sc_height);
+	if (*width > sc_width || *height > sc_height)
+		ft_error("EXCEED MAXIMUM SCREEN RESOLUTION!");
+	*size = *width * TILE_SIZE;
+	return (1);
 }

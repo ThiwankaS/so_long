@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:44:11 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/24 01:02:10 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/25 04:43:41 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_move_player(t_game *game, int x, int y)
 	if (game->map[dy][dx] == 'E')
 	{
 		if (game->score == game->map_info->c_count)
-			ft_win(game);
+			ft_close_window(game);
 	}
 	else
 	{
@@ -52,6 +52,6 @@ int	ft_key_press(int keycode, t_game *game)
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		ft_move_player(game, 1, 0);
 	else if (keycode == KEY_ESC)
-		ft_exit_confirmation(game);
+		ft_close_window(game);
 	return (0);
 }

@@ -1,0 +1,9 @@
+//All the object files
+*.o
+
+//Executable file
+so_long
+
+//Dynamic libraries
+libft.a
+libmlx_Linux.a
