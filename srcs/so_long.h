@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:36:28 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/25 05:20:17 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:11:27 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_game
 	void		*temp;
 	void		*img;
 	char		**map;
+	char		prev;
 	t_texture	*textures;
 	t_position	*player;
 	t_position	*exit;

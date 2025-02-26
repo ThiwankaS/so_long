@@ -6,11 +6,37 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:44:11 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/25 04:43:41 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:20:30 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	ft_assign(t_game *game, char c, int dx, int dy)
+{
+	game->map[dy][dx] = 'P';
+	if (c == 'E')
+	{
+		game->map[game->player->y][game->player->x] = '0';
+		game->prev = 'E';
+	}
+	else
+	{
+		if (game->prev == 'E')
+		{
+			game->map[game->player->y][game->player->x] = 'E';
+			game->prev = '0';
+		}
+		else
+		{
+			game->map[game->player->y][game->player->x] = c;
+		}
+	}
+	game->player->x = dx;
+	game->player->y = dy;
+	game->count_moves++;
+	return (1);
+}
 
 static int	ft_move_player(t_game *game, int x, int y)
 {
@@ -27,14 +53,14 @@ static int	ft_move_player(t_game *game, int x, int y)
 	{
 		if (game->score == game->map_info->c_count)
 			ft_close_window(game);
+		else
+		{
+			ft_assign(game, 'E', dx, dy);
+		}
 	}
 	else
 	{
-		game->map[dy][dx] = 'P';
-		game->map[game->player->y][game->player->x] = '0';
-		game->player->x = dx;
-		game->player->y = dy;
-		game->count_moves++;
+		ft_assign(game, '0', dx, dy);
 	}
 	ft_printf("No of moves : %d\n", game->count_moves);
 	ft_draw_map(game);

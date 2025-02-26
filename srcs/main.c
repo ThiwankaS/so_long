@@ -6,7 +6,7 @@
 /*   By: tsomacha <tsomacha@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:35:58 by tsomacha          #+#    #+#             */
-/*   Updated: 2025/02/23 22:54:18 by tsomacha         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:11:12 by tsomacha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	ft_init(t_game *game)
 	game->img_width = 0;
 	game->img_height = 0;
 	game->count_moves = 0;
+	game->prev = '0';
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
 	game->temp = NULL;
