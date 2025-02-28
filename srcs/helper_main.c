@@ -33,7 +33,7 @@ static void	ft_init(t_game *game)
 	int	height;
 	int	tile_size;
 
-	width = (game->map_info->width - 1) * TILE_SIZE;
+	width = (game->map_info->width) * TILE_SIZE;
 	height = game->map_info->height * TILE_SIZE;
 	tile_size = TILE_SIZE;
 	game->mlx_ptr = mlx_init();
